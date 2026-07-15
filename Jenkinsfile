@@ -17,7 +17,7 @@ pipeline {
         stage('Run Automation Tests') {
             steps {
                 // Executes UI and Unit tests on a simulated device
-                sh "xcodebuild test -workspace ${WORKSPACE} -scheme ${SCHEME} -destination 'platform=macOS"
+                sh "xcodebuild test -workspace ${WORKSPACE} -scheme ${SCHEME} -destination 'platform=macOS'"
             }
         }
     }
