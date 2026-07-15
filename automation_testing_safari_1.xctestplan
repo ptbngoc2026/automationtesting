@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "76B82B16-ED76-4FD6-A49B-206E4C7E1041",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:automation_testing_safari_1.xcodeproj",
+      "identifier" : "72A662763003585200EF0538",
+      "name" : "automation_testing_safari_1"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:automation_testing_safari_1.xcodeproj",
+        "identifier" : "72A662853003585400EF0538",
+        "name" : "automation_testing_safari_1Tests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:automation_testing_safari_1.xcodeproj",
+        "identifier" : "72A6628F3003585400EF0538",
+        "name" : "automation_testing_safari_1UITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -6,54 +6,71 @@
 //
 
 import SwiftUI
-import SwiftData
+import UniformTypeIdentifiers
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State public var isImporting = false
+    @State public var selectedFolderURL: URL?
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        VStack(spacing: 20) {
+            if let url = selectedFolderURL {
+                Text("Selected Folder:")
+                    .font(.headline)
+                Text(url.path)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            } else {
+                Text("No folder selected")
+                    .foregroundColor(.secondary)
+            }
+
+            Button(action: { isImporting = true }) {
+                Label("Open Folder", systemImage: "folder.badge.plus")
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+        // Configured specifically to target directories
+        .fileImporter(
+            isPresented: $isImporting,
+            allowedContentTypes: [.directory],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                // Grab the first selected directory URL
+                if let url = urls.first {
+                    handleSelectedFolder(url: url)
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            case .failure(let error):
+                print("Error selecting folder: \(error.localizedDescription)")
             }
         }
     }
-}
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    public func handleSelectedFolder(url: URL) {
+        // Essential step for reading files outside of your app sandbox
+        guard url.startAccessingSecurityScopedResource() else {
+            print("Permission denied to access folder.")
+            return
+        }
+        
+        // Defer ensures the resource is properly released when exiting this scope
+        defer { url.stopAccessingSecurityScopedResource() }
+        
+        self.selectedFolderURL = url
+        
+        // Read contents example
+        do {
+            let contents = try FileManager.default.contentsOfDirectory(
+                at: url,
+                includingPropertiesForKeys: nil,
+                options: .skipsHiddenFiles
+            )
+            print("Found \(contents.count) items inside this directory.")
+        } catch {
+            print("Failed to read folder contents: \(error.localizedDescription)")
+        }
+    }
 }

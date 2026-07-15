@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		726FF17A3005EBD600B1F434 /* automation_testing_safari_1.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = automation_testing_safari_1.xctestplan; sourceTree = "<group>"; };
 		72A662773003585200EF0538 /* automation_testing_safari_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = automation_testing_safari_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A662863003585400EF0538 /* automation_testing_safari_1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = automation_testing_safari_1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A662903003585400EF0538 /* automation_testing_safari_1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = automation_testing_safari_1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +76,7 @@
 		72A6626E3003585200EF0538 = {
 			isa = PBXGroup;
 			children = (
+				726FF17A3005EBD600B1F434 /* automation_testing_safari_1.xctestplan */,
 				72A662793003585200EF0538 /* automation_testing_safari_1 */,
 				72A662893003585400EF0538 /* automation_testing_safari_1Tests */,
 				72A662933003585400EF0538 /* automation_testing_safari_1UITests */,
