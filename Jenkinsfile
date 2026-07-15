@@ -2,7 +2,7 @@ pipeline {
     agent { label 'macOS-runner' } // iOS builds require a macOS agent with Xcode installed
     
     environment {
-        WORKSPACE = 'automation_testing_safari_1.xcworkspace'
+        WORKSPACE = 'automation_testing_safari_1UITests.xcworkspace'
         SCHEME = 'automation_testing_safari_1'
     }
 
@@ -15,7 +15,7 @@ pipeline {
         stage('Run Automation Tests') {
             steps {
                 // Executes UI and Unit tests on a simulated device
-                sh "xcodebuild test -workspace ${WORKSPACE} -scheme ${SCHEME} -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest'"
+                sh "xcodebuild test -workspace ${WORKSPACE} -scheme ${SCHEME} -destination 'platform=macOS"
             }
         }
     }
