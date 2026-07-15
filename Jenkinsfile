@@ -1,5 +1,7 @@
 pipeline {
-    agent { label 'macOS-runner' } // iOS builds require a macOS agent with Xcode installed
+    agent {
+        node { label 'macOS-runner' }
+    } // iOS builds require a macOS agent with Xcode installed
     
     environment {
         WORKSPACE = 'automation_testing_safari_1UITests.xcworkspace'
