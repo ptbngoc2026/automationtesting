@@ -4,7 +4,7 @@ pipeline {
     } // iOS builds require a macOS agent with Xcode installed
     
     environment {
-        WORKSPACE = 'automation_testing_safari_1UITests.xcworkspace'
+        WORKSPACE = 'automation_testing_safari_1.xcworkspace'
         SCHEME = 'automation_testing_safari_1'
     }
 
